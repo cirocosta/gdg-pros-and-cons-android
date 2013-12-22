@@ -19,9 +19,18 @@ Dependências
 External
 ------
 Faz-se uso da API do [Meetup.com](www.meetup.com) para a obtenção de dados referentes aos encontros do grupo:
-
+Large
 - https://api.meetup.com/2/groups?&sign=true&group_urlname=GDG-SP&page=20
 - https://api.meetup.com/2/events?&sign=true&group_id=8562442&page=20
+
+Testes
+-----
+- Testes unitários a serem feitos com a plataforma padrão Android+JUnit;
+- Testes de UI inicialmente serão realizados utilizando como framework o [Espresso](https://code.google.com/p/android-test-kit/).
+- MonkeyTests para testar ANR/crashes por stress-test.
+
+*as stated on [How the Google+ Team Tests Mobile Apps](http://googletesting.blogspot.com.br/2013/08/how-google-team-tests-mobile-apps.html)* 
+
 
 Disclaimer
 ------
