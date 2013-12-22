@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--  General -->
+    <!-- General -->
     <string name="app_name">GDG ProsAndCons</string>
     <string name="action_settings">Configurações</string>
     <string name="logout">Sair</string>
@@ -9,7 +9,7 @@
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
     <string name="skip_login">Pular Login</string>
-    
+
     <!-- Label -->
 
     <string name="label_main">Meetups a Votar</string>
