@@ -4,39 +4,61 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.print.PrintDocumentAdapter.LayoutResultCallback;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ListaFragment extends Fragment {
 
-	private View view, header;
-	private ListView lvLista;
-	private TextView tvTextoHeader;
+	private View mView, mHeader;
+	private ListView mLvLista;
+	private TextView mTvTextoHeader;
+	private ListaMeetupsAdapter mAdapter;
+	private static ArrayList<SimpleMeetup> listaMeetups;
+	static {
+		listaMeetups = new ArrayList<SimpleMeetup>();
+		listaMeetups.add(new SimpleMeetup("Nome", "data"));
+		listaMeetups.add(new SimpleMeetup("teste", "data"));
+		listaMeetups.add(new SimpleMeetup("Nome", "data"));
+		listaMeetups.add(new SimpleMeetup("Nome", "data"));
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.lista_frag, container, false);
-		initialize(view);
-		lvLista.addHeaderView(header);
-		lvLista.setAdapter(null);
-		return view;
+		mView = inflater.inflate(R.layout.lista_frag, container, false);
+		initialize(mView);
+
+		mAdapter = new ListaMeetupsAdapter(getActivity(),
+				R.layout.lista_frag_row, listaMeetups);
+		mLvLista.addHeaderView(mHeader);
+		mLvLista.setAdapter(mAdapter);
+		mLvLista.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				Intent i = new Intent(getActivity(), VoteActv.class);
+				startActivity(i);
+			}
+		});
+		return mView;
 	}
 
-	
 	private void initialize(View view) {
-		LayoutInflater inflater = (LayoutInflater) getActivity()
+		final LayoutInflater mInflater = (LayoutInflater) getActivity()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		lvLista = (ListView) view.findViewById(R.id.lista_frag_lvLista);
-		header = inflater.inflate(R.layout.lista_frag_header, null);
-		tvTextoHeader = (TextView) header
+		mLvLista = (ListView) view.findViewById(R.id.lista_frag_lvLista);
+		mHeader = mInflater.inflate(R.layout.lista_frag_header, null);
+		mTvTextoHeader = (TextView) mHeader
 				.findViewById(R.id.lista_frag_header_tvTexto);
 	}
 
@@ -61,9 +83,9 @@ public class ListaFragment extends Fragment {
 		final int resource;
 		final ArrayList<SimpleMeetup> data;
 
-		public ListaMeetupsAdapter(Context context, int resource,
-				int layoutResourceId, ArrayList<SimpleMeetup> objects) {
-			super(context, resource, layoutResourceId, objects);
+		public ListaMeetupsAdapter(Context context, int layoutResourceId,
+				ArrayList<SimpleMeetup> objects) {
+			super(context, layoutResourceId, objects);
 			this.context = context;
 			this.resource = layoutResourceId;
 			this.data = objects;
@@ -74,7 +96,7 @@ public class ListaFragment extends Fragment {
 			SimpleMeetupHolder holder;
 			if (convertView == null) {
 				holder = new SimpleMeetupHolder();
-				LayoutInflater inflater = ((Activity) context)
+				final LayoutInflater inflater = ((Activity) context)
 						.getLayoutInflater();
 				convertView = inflater.inflate(resource, parent, false);
 				holder.tvNome = (TextView) convertView

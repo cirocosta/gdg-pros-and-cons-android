@@ -8,7 +8,11 @@
     <string name="login">Entrar</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="revoke_access">Desvincular conta</string>
     <string name="skip_login">Pular Login</string>
+    <string name="loging_in">Entrando &#8230;</string>
+    <string name="login_ok">Usuário Logado com Sucesso</string>
+    <string name="label_voteactv">Vote!</string>
 
     <!-- Label -->
 

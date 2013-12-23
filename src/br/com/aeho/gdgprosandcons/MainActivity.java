@@ -21,67 +21,78 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-	private static int drawerStatus = 0;
-	private ListView leftDrawer;
-	private View navDrawerHeader, navDrawerFooter;
-	private DrawerLayout drawerLayout;
-	private NavDrawerListAdapter listAdapter;
-	private ActionBarDrawerToggle drawerToggle;
+	private static int sDrawerStatus = 0;
+	private ListView mLeftDrawer;
+	private View mNavDrawerHeader, mNavDrawerFooter;
+	private DrawerLayout mDrawerLayout;
+	private NavDrawerListAdapter mListAdapter;
+	private ActionBarDrawerToggle mDrawerToggle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-		initialize_ui();
-		initialize_adapters();
-		leftDrawer.addHeaderView(navDrawerHeader);
-		leftDrawer.addFooterView(navDrawerFooter);
-		leftDrawer.setAdapter(listAdapter);
-		leftDrawer.setOnItemClickListener(new OnItemClickListener() {
+		
+		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		
+		initializeUi();
+		initializeAdapters();
+		
+		mLeftDrawer.addHeaderView(mNavDrawerHeader);
+		mLeftDrawer.addFooterView(mNavDrawerFooter);
+		mLeftDrawer.setAdapter(mListAdapter);
+		mLeftDrawer.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				position--;
-				switch (position) {
-				case 0:
-					Fragment fragment = new ListaFragment();
-					getSupportFragmentManager()
-							.beginTransaction()
-							.replace(R.id.main_activity_content_frame, fragment)
-							.commit();
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				}
-				drawerLayout.closeDrawer(leftDrawer);
+				selectFragFromItem(position);
 			}
 		});
-		drawerLayout.setDrawerListener(drawerToggle);
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		if (savedInstanceState == null) {
+			selectFragFromItem(0);
+		}
 	}
 
-	private void initialize_adapters() {
+	private void selectFragFromItem(int position) {
+		switch (position) {
+		case 0:
+			Fragment fragment = new ListaFragment();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.main_activity_content_frame, fragment)
+					.commit();
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+		mDrawerLayout.closeDrawer(mLeftDrawer);
+	}
 
-		listAdapter = new NavDrawerListAdapter(MainActivity.this,
+	private void initializeAdapters() {
+
+		mListAdapter = new NavDrawerListAdapter(MainActivity.this,
 				R.layout.main_activity_drawer_row);
 
-		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_action_about, R.string.app_name,
 				R.string.app_name) {
 			@Override
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
-				drawerStatus = 0;
+				sDrawerStatus = 0;
 				supportInvalidateOptionsMenu();
 			}
 
 			@Override
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
-				drawerStatus = 1;
+				sDrawerStatus = 1;
 				supportInvalidateOptionsMenu();
 			}
 		};
@@ -144,13 +155,13 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 
-	private void initialize_ui() {
+	private void initializeUi() {
 		final LayoutInflater inflater = getLayoutInflater();
-		leftDrawer = (ListView) findViewById(R.id.main_activity_left_drawer);
-		drawerLayout = (DrawerLayout) findViewById(R.id.main_activity_drawer_layout);
-		navDrawerHeader = inflater.inflate(
+		mLeftDrawer = (ListView) findViewById(R.id.main_activity_left_drawer);
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.main_activity_drawer_layout);
+		mNavDrawerHeader = inflater.inflate(
 				R.layout.main_activity_drawer_header, null);
-		navDrawerFooter = inflater.inflate(
+		mNavDrawerFooter = inflater.inflate(
 				R.layout.main_activity_drawer_footer, null);
 	}
 
@@ -167,6 +178,15 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			if (sDrawerStatus == 0) {
+				mDrawerLayout.openDrawer(mLeftDrawer);
+			} else {
+				mDrawerLayout.closeDrawer(mLeftDrawer);
+			}
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 

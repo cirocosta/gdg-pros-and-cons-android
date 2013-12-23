@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/login_activity_bSignin"
+    <Button
+        android:id="@+id/login_activity_bLogin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/login_activity_bLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_activity_bRevoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/revoke_access"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/login_activity_tvSkip"

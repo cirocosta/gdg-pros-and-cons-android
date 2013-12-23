@@ -3,17 +3,12 @@ package br.com.aeho.gdgprosandcons;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-public class DetalhesMeetup extends ActionBarActivity {
+public class VoteActv extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(0);
-		initializeUi();
-	}
-
-	private void initializeUi() {
-
+		setContentView(R.layout.vote_actv);
 	}
 
 }

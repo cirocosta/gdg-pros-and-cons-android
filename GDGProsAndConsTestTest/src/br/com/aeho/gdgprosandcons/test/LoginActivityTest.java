@@ -1,18 +1,19 @@
 package br.com.aeho.gdgprosandcons.test;
 
-import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
+import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.TextView;
 import br.com.aeho.gdgprosandcons.LoginActivity;
+import br.com.aeho.gdgprosandcons.MainActivity;
 
+import com.google.android.apps.common.testing.ui.espresso.Espresso;
 import com.google.android.apps.common.testing.ui.espresso.action.ViewActions;
+import com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers;
 
 public class LoginActivityTest extends
 		ActivityInstrumentationTestCase2<LoginActivity> {
 
 	private LoginActivity mActivity;
-	private TextView tvLogin;
+	private ActivityMonitor mActivityMonitor;
 
 	@SuppressWarnings("deprecation")
 	public LoginActivityTest() {
@@ -22,11 +23,32 @@ public class LoginActivityTest extends
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		getActivity();
+		mActivity = getActivity();
 	}
 
-	public void testSimpleClick() {
-		onView(withId(br.com.aeho.gdgprosandcons.R.id.login_activity_tvSkip))
+	public void testSkipLogin() {
+		assertNotNull("Cannot start since target actv is null", mActivity);
+		mActivityMonitor = getInstrumentation().addMonitor(
+				MainActivity.class.getName(), null, false);
+		MainActivity mMainActivity = null;
+		Espresso.onView(
+				ViewMatchers
+						.withId(br.com.aeho.gdgprosandcons.R.id.login_activity_tvSkip))
 				.perform(ViewActions.click());
+		mMainActivity = (MainActivity) mActivityMonitor
+				.waitForActivityWithTimeout(5000);
+		assertNotNull("MainActivity is null but shouldnt", mMainActivity);
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+		if (mActivity != null) {
+			mActivity.finish();
+			mActivity = null;
+		} else {
+			getInstrumentation().removeMonitor(mActivityMonitor);
+			mActivityMonitor = null;
+		}
 	}
 }
