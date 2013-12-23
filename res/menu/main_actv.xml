@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/m_main_actv_info"
+        android:icon="@drawable/ic_action_about"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:title="@string/info"
+        yourapp:showAsAction="ifRoom|collapseActionView">
+    </item>
+
+</menu>

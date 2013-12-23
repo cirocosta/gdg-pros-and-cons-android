@@ -32,13 +32,13 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-		
+
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		
+
 		initializeUi();
 		initializeAdapters();
-		
+
 		mLeftDrawer.addHeaderView(mNavDrawerHeader);
 		mLeftDrawer.addFooterView(mNavDrawerFooter);
 		mLeftDrawer.setAdapter(mListAdapter);
@@ -167,13 +167,19 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.main_actv, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		return super.onPrepareOptionsMenu(menu);
+		MenuItem mInfo = menu.findItem(R.id.m_main_actv_info);
+		if (sDrawerStatus == 0) {
+			mInfo.setEnabled(true).setVisible(true);
+		} else {
+			mInfo.setEnabled(false).setVisible(false);
+		}
+		return true;
 	}
 
 	@Override
@@ -185,6 +191,8 @@ public class MainActivity extends ActionBarActivity {
 			} else {
 				mDrawerLayout.closeDrawer(mLeftDrawer);
 			}
+			return true;
+		case R.id.m_main_actv_info:
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

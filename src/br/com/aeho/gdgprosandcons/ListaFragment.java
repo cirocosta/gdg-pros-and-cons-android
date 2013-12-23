@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,13 +40,14 @@ public class ListaFragment extends Fragment {
 
 		mAdapter = new ListaMeetupsAdapter(getActivity(),
 				R.layout.lista_frag_row, listaMeetups);
-		mLvLista.addHeaderView(mHeader);
+		mLvLista.addHeaderView(mHeader, null, false);
 		mLvLista.setAdapter(mAdapter);
 		mLvLista.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
+				position--;
 				Intent i = new Intent(getActivity(), VoteActv.class);
 				startActivity(i);
 			}
