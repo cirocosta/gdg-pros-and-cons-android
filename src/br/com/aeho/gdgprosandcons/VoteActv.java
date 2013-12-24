@@ -4,15 +4,34 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import br.com.aeho.gdgprosandcons.Utils.Constants;
 
-public class VoteActv extends ActionBarActivity {
+public class VoteActv extends ActionBarActivity implements
+		ActionBar.TabListener, ViewPager.OnPageChangeListener {
+
+	private ActionBar mActionBar;
+	private ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vote_actv);
+		mViewPager = (ViewPager) findViewById(R.id.vote_actv_pager);
+		mActionBar = getSupportActionBar();
+		mActionBar.addTab(mActionBar.newTab().setText(getString(R.string.ruim))
+				.setTabListener(this));
+		mActionBar.addTab(mActionBar.newTab().setText(getString(R.string.bom))
+				.setTabListener(this));
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		mViewPager.setAdapter(new VoteMoodPagerAdapter(
+				getSupportFragmentManager()));
+		mViewPager.setOnPageChangeListener(this);
+
 	}
 
 	public class VoteMoodPagerAdapter extends FragmentPagerAdapter {
@@ -46,4 +65,35 @@ public class VoteActv extends ActionBarActivity {
 		}
 
 	}
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+
+	}
+
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		mViewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onPageSelected(int position) {
+		mActionBar.setSelectedNavigationItem(position);
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+	}
+
 }

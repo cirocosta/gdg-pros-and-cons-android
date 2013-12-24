@@ -15,11 +15,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements
+		View.OnClickListener {
 
 	private static int sDrawerStatus = 0;
 	private ListView mLeftDrawer;
@@ -27,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
 	private NavDrawerListAdapter mListAdapter;
 	private ActionBarDrawerToggle mDrawerToggle;
+	private Button mButtonFooter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 		initializeUi();
 		initializeAdapters();
 
-		mLeftDrawer.addHeaderView(mNavDrawerHeader);
+		mLeftDrawer.addHeaderView(mNavDrawerHeader, null, false);
 		mLeftDrawer.addFooterView(mNavDrawerFooter);
 		mLeftDrawer.setAdapter(mListAdapter);
 		mLeftDrawer.setOnItemClickListener(new OnItemClickListener() {
@@ -51,6 +54,8 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		mButtonFooter.setOnClickListener(this);
+
 		if (savedInstanceState == null) {
 			selectFragFromItem(0);
 		}
@@ -163,6 +168,8 @@ public class MainActivity extends ActionBarActivity {
 				R.layout.main_activity_drawer_header, null);
 		mNavDrawerFooter = inflater.inflate(
 				R.layout.main_activity_drawer_footer, null);
+		mButtonFooter = (Button) mNavDrawerFooter
+				.findViewById(R.id.main_activity_drawer_footer_bFooter);
 	}
 
 	@Override
@@ -196,6 +203,15 @@ public class MainActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.main_activity_drawer_footer_bFooter:
+
+			break;
+		}
 	}
 
 }
