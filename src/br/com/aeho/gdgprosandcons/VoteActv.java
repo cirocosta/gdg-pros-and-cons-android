@@ -1,5 +1,7 @@
 package br.com.aeho.gdgprosandcons;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,6 +106,21 @@ public class VoteActv extends ActionBarActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.vote_menu, menu);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case NEW_POSTIT_ACTV_CODE:
+			if (resultCode == RESULT_OK) {
+				Bundle resultArgs = data.getExtras();
+				Crouton.makeText(this, resultArgs.getString("titulo"),
+						Style.ALERT).show();
+			}
+			break;
+		}
+
 	}
 
 	@Override
