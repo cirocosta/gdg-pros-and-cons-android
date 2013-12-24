@@ -34,7 +34,14 @@
             android:name=".MainActivity"
             android:label="@string/label_main" >
         </activity>
-        <activity android:name=".VoteActv" android:label="@string/label_voteactv"></activity>
+        <activity
+            android:name=".NewPostItActv"
+            android:label="@string/label_newpostitactv" >
+        </activity>
+        <activity
+            android:name=".VoteActv"
+            android:label="@string/label_voteactv" >
+        </activity>
     </application>
 
 </manifest>

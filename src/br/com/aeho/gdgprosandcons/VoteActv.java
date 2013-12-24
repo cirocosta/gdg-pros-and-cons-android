@@ -1,5 +1,6 @@
 package br.com.aeho.gdgprosandcons;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import br.com.aeho.gdgprosandcons.Utils.Constants;
 
 public class VoteActv extends ActionBarActivity implements
@@ -16,6 +19,7 @@ public class VoteActv extends ActionBarActivity implements
 
 	private ActionBar mActionBar;
 	private ViewPager mViewPager;
+	public static final int NEW_POSTIT_ACTV_CODE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +98,23 @@ public class VoteActv extends ActionBarActivity implements
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.vote_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.m_vote_menu_newPost:
+			startActivityForResult(new Intent(VoteActv.this,
+					NewPostItActv.class), NEW_POSTIT_ACTV_CODE);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }

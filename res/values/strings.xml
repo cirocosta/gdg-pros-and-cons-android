@@ -14,12 +14,24 @@
     <string name="login_ok">Usuário Logado com Sucesso</string>
     <string name="label_voteactv">Vote!</string>
     <string name="info">Informações</string>
-	<string name="bom">Bom</string>
-	<string name="ruim">Ruim</string>
-    
+    <string name="bom">Bom</string>
+    <string name="ruim">Ruim</string>
+    <string name="post">POST!</string>
+    <string name="no_postits">Sem postis</string>
+
     <!-- Label -->
 
     <string name="label_main">Meetups a Votar</string>
+    <string name="label_newpostitactv">Novo PostIt!</string>
+
+    <!-- Vote -->
+
+    <string name="postit_empty">Vazio</string>
+    <string name="postit_titulo">Título</string>
+    <string name="postit_titulo_hint">(Opcional) Título do Post It</string>
+    <string name="postit_conteudo">Conteúdo</string>
+    <string name="postit_conteudo_hint">O que vocẽ (não)gostou, o que foi bom, o que faltou &#8230;</string>
+    <string name="postit_anonimo">Anônimo</string>
 
     <!-- Main -->
     <string-array name="navdrawer_items">

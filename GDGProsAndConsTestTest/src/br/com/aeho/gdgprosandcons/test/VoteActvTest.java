@@ -1,8 +1,12 @@
 package br.com.aeho.gdgprosandcons.test;
 
 import android.app.Instrumentation.ActivityMonitor;
+import android.support.v7.app.ActionBar;
 import android.test.ActivityInstrumentationTestCase2;
 import br.com.aeho.gdgprosandcons.VoteActv;
+
+import com.google.android.apps.common.testing.ui.espresso.Espresso;
+import com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers;
 
 public class VoteActvTest extends ActivityInstrumentationTestCase2<VoteActv> {
 
@@ -36,6 +40,7 @@ public class VoteActvTest extends ActivityInstrumentationTestCase2<VoteActv> {
 		}
 	}
 
-	
-	
+	public void testTabChangesFragment() {
+	}
+
 }

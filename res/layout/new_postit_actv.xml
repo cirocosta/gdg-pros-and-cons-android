@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/postit_titulo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/new_postit_actv_etTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/postit_titulo_hint" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/postit_conteudo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/new_postit_actv_etConteudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/postit_conteudo_hint" />
+
+    <CheckBox
+        android:id="@+id/new_postit_actv_cbAnonimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/postit_anonimo" />
+
+    <ToggleButton
+        android:id="@+id/new_postit_actv_tbMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bom" />
+
+</LinearLayout>
