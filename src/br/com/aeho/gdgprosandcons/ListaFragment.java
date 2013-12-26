@@ -7,7 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,6 +34,32 @@ public class ListaFragment extends Fragment {
 		listaMeetups.add(new SimpleMeetup("Nome", "data"));
 		listaMeetups.add(new SimpleMeetup("Nome", "data"));
 	}
+
+	private ActionMode mActionMode;
+	private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+		@Override
+		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+			MenuInflater inflater = mode.getMenuInflater();
+			inflater.inflate(R.menu.lista_frag_ctxt_menu, menu);
+			return true;
+		}
+
+		@Override
+		public boolean onPrepareActionMode(ActionMode arg0, Menu arg1) {
+			return false;
+		}
+
+		@Override
+		public boolean onActionItemClicked(ActionMode arg0, MenuItem arg1) {
+			return false;
+		}
+
+		@Override
+		public void onDestroyActionMode(ActionMode mode) {
+			mActionMode = null;
+		}
+
+	};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
