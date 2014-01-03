@@ -1,5 +1,6 @@
 package br.com.aeho.gdgprosandcons.Utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -14,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+@SuppressLint("DrawAllocation")
 public class RoundedImageView extends ImageView {
 
 	public RoundedImageView(Context context) {
@@ -54,7 +56,7 @@ public class RoundedImageView extends ImageView {
 			bitmap = b;
 		}
 
-		int w = getWidth(), h = getHeight();
+		int w = getWidth();
 
 		Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
 		canvas.drawBitmap(roundBitmap, 0, 0, null);
@@ -71,7 +73,6 @@ public class RoundedImageView extends ImageView {
 				Config.ARGB_8888);
 		Canvas canvas = new Canvas(output);
 
-		final int color = 0xffa19774;
 		final Paint paint = new Paint();
 		final Rect rect = new Rect(0, 0, sbmp.getWidth(), sbmp.getHeight());
 

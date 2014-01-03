@@ -10,11 +10,11 @@ public class PreferencesController {
 	public Editor editor;
 	private Context mContext;
 	public static final int PRIVATE_MODE = 0;
-	public static final String PREFS_NAME = "gdgprosandcons_prefs";
 
 	public PreferencesController(Context context) {
 		this.mContext = context;
-		prefs = mContext.getSharedPreferences(PREFS_NAME, PRIVATE_MODE);
+		prefs = mContext.getSharedPreferences(Constants.PREFS_NAME,
+				PRIVATE_MODE);
 	}
 
 	public SharedPreferences getSharedPreferences() {

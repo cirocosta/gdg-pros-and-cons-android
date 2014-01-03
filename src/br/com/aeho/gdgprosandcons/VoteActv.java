@@ -37,7 +37,6 @@ public class VoteActv extends ActionBarActivity implements
 		mViewPager.setAdapter(new VoteMoodPagerAdapter(
 				getSupportFragmentManager()));
 		mViewPager.setOnPageChangeListener(this);
-
 	}
 
 	public class VoteMoodPagerAdapter extends FragmentPagerAdapter {

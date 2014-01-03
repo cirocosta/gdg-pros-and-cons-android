@@ -1,5 +1,7 @@
 package br.com.aeho.gdgprosandcons;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.com.aeho.gdgprosandcons.Utils.Constants;
 
 public class MainActivity extends ActionBarActivity implements
 		View.OnClickListener {
@@ -31,6 +34,7 @@ public class MainActivity extends ActionBarActivity implements
 	private NavDrawerListAdapter mListAdapter;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Button mButtonFooter;
+	Account mAccount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class MainActivity extends ActionBarActivity implements
 
 		initializeUi();
 		initializeAdapters();
+		mAccount = CreateSyncAccount(this);
 
 		mLeftDrawer.addHeaderView(mNavDrawerHeader, null, false);
 		mLeftDrawer.addFooterView(mNavDrawerFooter);
@@ -60,6 +65,19 @@ public class MainActivity extends ActionBarActivity implements
 		if (savedInstanceState == null) {
 			selectFragFromItem(0);
 		}
+	}
+
+	private Account CreateSyncAccount(Context context) {
+		Account newAccount = new Account(Constants.DUMMY_ACCOUNT,
+				Constants.ACCOUNT_TYPE);
+		AccountManager accountManager = (AccountManager) context
+				.getSystemService(ACCOUNT_SERVICE);
+		if(accountManager.addAccountExplicitly(newAccount, null, null)){
+			
+		} else {
+			// some error happened
+		}
+		return null;
 	}
 
 	@Override
