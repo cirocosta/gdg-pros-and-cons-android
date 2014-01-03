@@ -6,7 +6,6 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
 import static org.hamcrest.Matchers.not;
 import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.Suppress;
 import br.com.aeho.gdgprosandcons.MainActivity;
 import br.com.aeho.gdgprosandcons.R;
 import br.com.aeho.gdgprosandcons.VoteActv;
@@ -30,7 +29,6 @@ public class MainActivityTest extends
 		super(MainActivity.class);
 	}
 
-	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -53,7 +51,7 @@ public class MainActivityTest extends
 	 * Verifica se esta abrindo e fechando corretamente ps.: ha um problema de
 	 * sincronizacao do espresso com o utils
 	 */
-	@Suppress
+	// @Suppress
 	public void testNavDrawerOpenClose() {
 		onView(withId(R.id.main_activity_drawer_layout)).perform(
 				EspressoUtils.actionOpenDrawer());
@@ -70,7 +68,7 @@ public class MainActivityTest extends
 	 * Se o botao de Info esta aparecendo ou nao quando o NavDrawer eh aberto
 	 * ps.: ha um problema de sincronizacao do espresso com o utils
 	 */
-	@Suppress
+	// @Suppress
 	public void testMenuHiddenOnNavOpen() {
 		onView(withId(R.id.main_activity_drawer_layout)).perform(
 				EspressoUtils.actionOpenDrawer());
