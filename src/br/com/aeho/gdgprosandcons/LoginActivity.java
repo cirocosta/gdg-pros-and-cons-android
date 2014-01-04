@@ -44,7 +44,6 @@ public class LoginActivity extends ActionBarActivity implements
 		mConnectionProgressDialog = new ProgressDialog(this);
 		mConnectionProgressDialog.setMessage(getResources().getString(
 				R.string.loging_in));
-
 	}
 
 	@Override

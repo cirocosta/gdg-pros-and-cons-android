@@ -8,6 +8,6 @@
         android:id="@+id/main_activity_drawer_footer_bFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/logout" />
+        android:text="@string/login" />
 
 </LinearLayout>

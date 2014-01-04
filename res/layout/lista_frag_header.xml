@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/abc_list_selector_background_transition_holo_light" />
 
     <TextView
-        android:id="@+id/lista_frag_header_tvTexto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="lista frag header"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="30dp"
+        android:gravity="center_vertical"
+        android:textColor="#fff"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:text="GDG São Paulo"
+        android:background="@drawable/lin_grad"
+        />
 
-</LinearLayout>
+</RelativeLayout>

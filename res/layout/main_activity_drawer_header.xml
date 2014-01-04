@@ -13,10 +13,9 @@
         android:src="@drawable/abc_list_focused_holo" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/main_activity_drawer_header_tvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ciro S. Costa"
-        android:textSize="30dp" />
+        android:textSize="30sp"/>
 
 </LinearLayout>

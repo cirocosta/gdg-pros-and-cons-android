@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import br.com.aeho.gdgprosandcons.Utils.Constants;
+import br.com.aeho.gdgprosandcons.Utils.PreferencesController;
 
 public class MainActivity extends ActionBarActivity implements
 		View.OnClickListener {
@@ -34,8 +36,10 @@ public class MainActivity extends ActionBarActivity implements
 	private NavDrawerListAdapter mListAdapter;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Button mButtonFooter;
+	private TextView tvNome;
 	Account mAccount;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +47,8 @@ public class MainActivity extends ActionBarActivity implements
 
 		initializeUi();
 		initializeAdapters();
+
+		modifyNavDrawerIfLogged(this);
 		mAccount = CreateSyncAccount(this);
 
 		mLeftDrawer.addHeaderView(mNavDrawerHeader, null, false);
@@ -67,13 +73,26 @@ public class MainActivity extends ActionBarActivity implements
 		}
 	}
 
+	private void modifyNavDrawerIfLogged(Context context) {
+		PreferencesController preferencesController = new PreferencesController(
+				context);
+		SharedPreferences prefs = preferencesController.prefs;
+		String username = prefs.getString(PreferencesController.PREFS_USERNAME,
+				"");
+		if (!username.isEmpty()) {
+			tvNome.setText(username);
+			mButtonFooter.setText(getString(R.string.logout));
+		}
+
+	}
+
 	private Account CreateSyncAccount(Context context) {
 		Account newAccount = new Account(Constants.DUMMY_ACCOUNT,
 				Constants.ACCOUNT_TYPE);
 		AccountManager accountManager = (AccountManager) context
 				.getSystemService(ACCOUNT_SERVICE);
-		if(accountManager.addAccountExplicitly(newAccount, null, null)){
-			
+		if (accountManager.addAccountExplicitly(newAccount, null, null)) {
+
 		} else {
 			// some error happened
 		}
@@ -201,6 +220,8 @@ public class MainActivity extends ActionBarActivity implements
 				R.layout.main_activity_drawer_footer, null);
 		mButtonFooter = (Button) mNavDrawerFooter
 				.findViewById(R.id.main_activity_drawer_footer_bFooter);
+		tvNome = (TextView) mNavDrawerHeader
+				.findViewById(R.id.main_activity_drawer_header_tvNome);
 	}
 
 	@Override

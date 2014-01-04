@@ -11,6 +11,9 @@ public class PreferencesController {
 	private Context mContext;
 	public static final int PRIVATE_MODE = 0;
 
+	public static final String PREFS_USERNAME = "username";
+	public static final String PREFS_PHOTO_URL = "photourl";
+	
 	public PreferencesController(Context context) {
 		this.mContext = context;
 		prefs = mContext.getSharedPreferences(Constants.PREFS_NAME,

@@ -90,7 +90,7 @@ public class ListaFragment extends Fragment {
 		mLvLista = (ListView) view.findViewById(R.id.lista_frag_lvLista);
 		mHeader = mInflater.inflate(R.layout.lista_frag_header, null);
 		mTvTextoHeader = (TextView) mHeader
-				.findViewById(R.id.lista_frag_header_tvTexto);
+				.findViewById(R.id.lista_frag_row_tvNome);
 	}
 
 	public static class SimpleMeetup {
